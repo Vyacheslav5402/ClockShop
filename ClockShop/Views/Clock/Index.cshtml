@@ -1,0 +1,55 @@
+﻿@model ClockIndexModel
+
+@if (true)
+{
+    
+}
+<div class="album py-5 bg-light">
+    <div class="container">
+        
+            <div class="row">
+            @foreach (var item in Model.Clock)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src=@Html.DisplayFor(modelItem => item.Src)>
+                        <div class="card-body">
+                            @Html.DisplayFor(modelItem => item.Name)
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Prise)$</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Details</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Buy</button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+        
+            
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+  <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-secondary">1</button>
+    <button type="button" class="btn btn-secondary">2</button>
+    <button type="button" class="btn btn-secondary">3</button>
+    <button type="button" class="btn btn-secondary">4</button>
+  </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text" id="btnGroupAddon"></div>
+    </div>
+    <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
+  </div>
+</div>
+
