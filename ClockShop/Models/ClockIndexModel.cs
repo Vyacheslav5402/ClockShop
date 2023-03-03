@@ -11,5 +11,6 @@
         public List<DateDescriptionModel> DateDescription { get; set; }
         public int CurrentPage { get; set; }
         public int AmountOfPage { get; set; }
+        public bool allPagesViews = false;
     }
 }

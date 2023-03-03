@@ -9,7 +9,7 @@ namespace ClockShop.Controllers
         public static List<ClockItem> clocks = new List<ClockItem>();
         public static List<DateDescriptionModel> dateDescriptions = new List<DateDescriptionModel>();
         public int _countItemOnThePage = 12;
-        public static int img = 2;
+        public static int img = 0;
         public ClockController()
         {
 
@@ -64,13 +64,17 @@ namespace ClockShop.Controllers
             var totalPages = (int)Math.Ceiling(clocks.Count() / (double)_countItemOnThePage);
             int asd = totalPages - currentPage;
             model.AmountOfPage =totalPages ;
-            
-            model.CurrentPage = asd - img ;
+            if (asd>img)
+            {
+                model.CurrentPage = asd - img;
+            }
+            else
+            {
+                model.allPagesViews = true;
+                img = 1;
+                return View("~/Views/Partials/IndexTable.cshtml", model);
 
-
-
-            //model.AmountOfPage = totalPages;
-
+            }
 
             if (currentPage != 1)
             {
@@ -78,20 +82,39 @@ namespace ClockShop.Controllers
             }
 
             _countItemOnThePage = skipItems + _countItemOnThePage;
-
-            //это чтоб переключатся межну страницами
-           // model.Clock = filteredOrders.Skip(skipItems).Take(_countItemOnThePage).ToList();
             model.Clock = filteredOrders.Take(_countItemOnThePage).ToList();
 
 
             if (isAjax)
             {
-                img++;
+                if (img <1)
+                {
+                    img++;
+                }
                 return View("~/Views/Partials/IndexTable.cshtml", model);
                 
             }
             
             return View(model);
+        }
+
+        public ActionResult PageNavigation(int currentPage = 1)
+        {
+            ClockIndexModel model = new ClockIndexModel();
+            model.Clock = clocks;
+            var filteredOrders = clocks;
+            var totalPages = (int)Math.Ceiling(clocks.Count() / (double)_countItemOnThePage);
+
+            int skipItems = 0;
+
+            if (currentPage != 1)
+            {
+               skipItems = (currentPage - 1) * _countItemOnThePage;
+            }
+
+            model.Clock = filteredOrders.Skip(skipItems).Take(_countItemOnThePage).ToList();
+
+            return View("~/Views/Partials/IndexTable.cshtml", model);
         }
     }
 }
