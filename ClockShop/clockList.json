@@ -1,0 +1,56 @@
+[
+  {
+    "Id": 1,
+    "Name": "CASIO MTP-1303L-1AVEF",
+    "Prise": 156,
+    "Src": "https://fs5.deka.ua/photo/goods/preview/1/202095/202095_20230110_600_960_MTP_1303L_1AVEF.jpg"
+  },
+  {
+    "Id": 2,
+    "Name": "CASIO EF-316D-1AVEG",
+    "Prise": 50,
+    "Src": "https://fs8.deka.ua/photo/goods/preview/1/200208/EF-316D-1AVEF_web.jpg"
+  },
+  {
+    "Id": 3,
+    "Name": "CASIO MTP-1221A-1AVEG",
+    "Prise": 70,
+    "Src": "https://fs6.deka.ua/photo/goods/preview/1/302666/302666_20150422_416_650_casio_mtp_1221a_1avef_5504.jpg"
+  },
+  {
+    "Id": 4,
+    "Name": "SAMSUNG GALAXY WATCH4 GREEN 44MM",
+    "Prise": 300,
+    "Src": "https://fs6.deka.ua/photo/goods/preview/66/661446/661446_20221213_524_494_94_174.jpg"
+  },
+  {
+    "Id": 5,
+    "Name": "SAMSUNG GALAXY WATCH4 CLASSIC BLACK 46MM",
+    "Prise": 250,
+    "Src": "https://fs7.deka.ua/photo/goods/preview/66/661447/661447_20221213_496_600_1232032_main.jpg"
+  },
+  {
+    "Id": 6,
+    "Name": "SAMSUNG GALAXY WATCH5 GRAPHITE 40MM",
+    "Prise": 400,
+    "Src": "https://fs0.deka.ua/photo/goods/preview/66/661450/661450_20221213_490_600_1403549_tn.jpg"
+  },
+  {
+    "Id": 7,
+    "Name": "EPOS 3434.183",
+    "Prise": 2489,
+    "Src": "https://fs3.deka.ua/photo/goods/preview/323/391033/391033_20210621_1200_1200_3500.165.20.26.25_1.jpg"
+  },
+  {
+    "Id": 8,
+    "Name": "EPOS 3434.183.24.3",
+    "Prise": 1256,
+    "Src": "https://fs1.deka.ua/photo/goods/preview/323/390811/390811_20221213_1200_1200_3429_195_20_55_25.jpg"
+  },
+  {
+    "Id": 9,
+    "Name": "EPOS 3434.183.24.34.25",
+    "Prise": 2999,
+    "Src": "https://fs1.deka.ua/photo/goods/preview/323/390821/390821_20230113_1200_1200_3434_183_24_34_25.jpg"
+  }
+]
