@@ -1,0 +1,66 @@
+﻿@model ClockIndexModel
+
+@{
+    Layout = null;
+}
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            
+                <div class="row">
+                    @foreach (var item in Model.Clock)
+                    {
+                        <div class="col-md-3">
+                            <div class="card mb-3 box-shadow">
+                                <img class="card-img-top" src=@Html.DisplayFor(modelItem => item.Src) width="70" height="300" fill="white">
+                                <div class="card-body">
+                                    <span class="d-inline-block text-truncate" style="max-width: 200px;">
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </span>
+                                    <p class="card-text">@Html.DisplayFor(modelItem => item.Prise)$</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Details</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Buy</button>
+                                        </div>
+                                        <small class="text-muted">9 mins</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div id="test"> </div>
+                </div>
+            
+        </div>
+    </div>
+
+
+
+<a class="btn btn-primary" href="javascript:void(0);" onclick="showMore(@Model.CurrentPage, @Model.AmountOfPage)" role="button">
+    Show more
+    </a>
+
+
+    <div class="col-md-8 mx-auto">
+        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-secondary">1</button>
+                <button type="button" class="btn btn-secondary">2</button>
+                <button type="button" class="btn btn-secondary">3</button>
+                <button type="button" class="btn btn-secondary">4</button>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text" id="btnGroupAddon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="25   " fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
+            </div>
+        </div>
+    </div>
+
+

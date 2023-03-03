@@ -1,81 +1,96 @@
 ﻿using ClockShop.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 namespace ClockShop.Controllers
 {
     public class ClockController : Controller
     {
-        public List<ClockItem> clocks = new List<ClockItem>();
-        public List<DateDescriptionModel> dateDescriptions = new List<DateDescriptionModel>();
-        private readonly int _countItemOnThePage = 8;
+        public static List<ClockItem> clocks = new List<ClockItem>();
+        public static List<DateDescriptionModel> dateDescriptions = new List<DateDescriptionModel>();
+        public int _countItemOnThePage = 12;
+        public static int img = 2;
         public ClockController()
         {
+
             if (!clocks.Any())
             {
+                var model = clocks;
                 var path = Path.Combine(Environment.CurrentDirectory, "clockList.json");
                 string jsonClockList = System.IO.File.ReadAllText(path);
-                clocks = System.Text.Json.JsonSerializer.Deserialize<ClockItem[]>(jsonClockList).ToList();
+                model = System.Text.Json.JsonSerializer.Deserialize<ClockItem[]>(jsonClockList).ToList();
 
                 path = Path.Combine(Environment.CurrentDirectory, "descriptionClock.json");
                 string descriptionClock = System.IO.File.ReadAllText(path);
                 dateDescriptions = System.Text.Json.JsonSerializer.Deserialize<DateDescriptionModel[]>(descriptionClock).ToList();
+                int id = 1;
+                int i = 0;
+                bool run = true;
 
-                
+
+
+                while (run)
+                {
+                    if (id > 150)
+                    {
+                        run = false;
+                        break;
+                    }
+                    if (i > 8)
+                    {
+                        i = 0;
+
+                    }
+                    var modelItem = new ClockItem
+                    {
+                        Name = model[i].Name,
+                        Prise = model[i].Prise,
+                        Src = model[i].Src,
+                        Id = id
+                    };
+                    clocks.Add(modelItem);
+                    id++;
+                    i++;
+                }
             }
-
-            Random rnd = new Random();
-
-            //for (int i = 1; i < 21; i++)
-            //{
-            //    var clockItem = new ClockItem
-            //    {
-            //        Id = i,
-            //        Description = "Test",
-            //        Mechanismtype = "cvarc",
-            //        Prise = rnd.Next(100, 300)
-            //    };
-            //    if (i % 5 == 0)
-            //    {
-            //        clockItem.Src = "http://placekitten.com/g/161/120";
-            //        clockItem.Name = "ЧАСЫ CASIO ";
-            //    }
-            //    if (i % 3 == 0)
-            //    {
-            //        clockItem.Src = "http://placekitten.com/g/162/120";
-            //        clockItem.Name = "ЧАСЫ BRUNO SOHNLE ARMIDA ";
-            //    }
-            //    if (i % 2 == 0)
-            //    {
-            //        clockItem.Src = "http://placekitten.com/g/163/120";
-            //        clockItem.Name = "ЧАСЫ ATLANTIC";
-            //    }
-            //    else
-            //    {
-            //        clockItem.Src = "http://placekitten.com/g/161/120";
-            //        clockItem.Name = "ЧАСЫ GSHOK ";
-            //    }
-            //    clocks.Add(clockItem);
-            //}
         }
-        public IActionResult Index(int currentPage = 1)
+        public ActionResult Index(bool isAjax = false, int currentPage = 1, int skipItems = 0)
         {
+
             ClockIndexModel model = new ClockIndexModel();
             model.Clock = clocks;
+            var filteredOrders = clocks;
 
             var totalPages = (int)Math.Ceiling(clocks.Count() / (double)_countItemOnThePage);
-            model.AmountOfPage = totalPages;
+            int asd = totalPages - currentPage;
+            model.AmountOfPage =totalPages ;
+            
+            model.CurrentPage = asd - img ;
 
-            int skipItems = 0;
+
+
+            //model.AmountOfPage = totalPages;
+
 
             if (currentPage != 1)
             {
                 skipItems = (currentPage - 1) * _countItemOnThePage;
             }
 
-            var filteredClocks = clocks;
+            _countItemOnThePage = skipItems + _countItemOnThePage;
 
-            model.Clock = filteredClocks.Skip(skipItems).Take(_countItemOnThePage).ToList();
+            //это чтоб переключатся межну страницами
+           // model.Clock = filteredOrders.Skip(skipItems).Take(_countItemOnThePage).ToList();
+            model.Clock = filteredOrders.Take(_countItemOnThePage).ToList();
 
+
+            if (isAjax)
+            {
+                img++;
+                return View("~/Views/Partials/IndexTable.cshtml", model);
+                
+            }
+            
             return View(model);
         }
     }

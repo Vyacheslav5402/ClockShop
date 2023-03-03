@@ -1,4 +1,26 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function showMore(currentPage, totalPages) {
+    debugger;
+    if (currentPage > 0) {
+        var asd = totalPages - currentPage
 
-// Write your JavaScript code.
+    }
+    $.ajax({
+        
+        url: '/clock/index?isAjax=true&skipItems=0&currentPage='+asd ,
+        success: function (result) {
+            debugger;
+
+            console.log(result);
+            $('#indexTable').html(result);
+        },
+        beforeSend: function () {
+            $('.lds-roller').show();
+        },
+        complete: function () {
+            $('.lds-roller').hide();
+        }
+    });
+    console.log(1);
+
+
+}
