@@ -1,0 +1,26 @@
+﻿@model ClockItem
+
+<div class="row bg-white">
+    <div class="col-sm py-2 mt-0 mb-2 mb-md-0 px-md-4 py-md-4">
+        <img src="@Model.Src" class="img-fluid float-right" alt="Responsive image">
+    </div>
+    <div class="col-sm py-3 py-md-3 px-3">
+        <h3 class=" px-0 px-md-4">@Model.Name</h3>
+        <ul class="px-0 px-md-4 list-unstyled">
+            <li class="py-1">Brand - @Model.Description.Brand</li>
+            <li class="py-1">Material - @Model.Description.Material</li>
+            <li class="py-1">Gender - @Model.Description.Gender</li>
+            <li class="py-1">Country - @Model.Description.Country</li>
+            <li class="py-1">Mechanism - @Model.Description.Mechanism</li>
+            @if (Model.Description.Guarantee == true)
+            {
+                <li class="py-1">Guarantee <img src="https://img1.freepng.ru/20190214/lyc/kisspng-computer-icons-scalable-vector-graphics-clip-art-c-checked-buttom-svg-png-icon-free-download-24585-5c6583526ef6e0.0134932215501566264545.jpg" width="30" height="30" /></li>
+            }
+            else
+            {
+                <li class="py-1">Guarantee <img src="https://cdn-icons-png.flaticon.com/512/37/37752.png" width="30" height="30" /></li>
+            }
+        </ul>
+    </div>
+
+</div>

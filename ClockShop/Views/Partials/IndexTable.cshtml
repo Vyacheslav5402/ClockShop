@@ -4,49 +4,45 @@
     Layout = null;
 }
 
-    <div class="album py-5 bg-light">
-        <div class="container">        
-                <div class="row">
-                    @foreach (var item in Model.Clock)
-                    {
-                        <div class="col-md-3">
-                            <div class="card mb-3 box-shadow">
-                                <img class="card-img-top" src=@Html.DisplayFor(modelItem => item.Src) width="70" height="300" fill="white">
-                                <div class="card-body">
-                                    <span class="d-inline-block text-truncate" style="max-width: 200px;">
-                                        @Html.DisplayFor(modelItem => item.Name)
-                                    </span>
-                                    <p class="card-text">@Html.DisplayFor(modelItem => item.Prise)$</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Details</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Buy</button>
-                                        </div>
-                                        <small class="text-muted">9 mins</small>
-                                    </div>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Clock)
+            {
+                <div class="col-md-3">
+                    <div class="card mb-3 box-shadow">
+                        <img class="card-img-top" src=@Html.DisplayFor(modelItem => item.Src) width="70" height="300" fill="white">
+                        <div class="card-body">
+                            <span class="d-inline-block text-truncate" style="max-width: 200px;">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </span>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Prise)$</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    @Html.ActionLink("Details Clock", "Details", new { id = item.Id }, new {@class = "btn btn-danger"}) |
+                                    @Html.ActionLink("Buy Clock", "Buy", new {id = item.Id }, new {@class = "btn btn-success"})
                                 </div>
+                                <small class="text-muted">9 mins</small>
                             </div>
                         </div>
-                    }
+                    </div>
                 </div>
-            
+            }
         </div>
     </div>
+</div>
 
 
-    @if (Model.allPagesViews == true)
+@if (Model.allPagesViews == true)
 {
     <div class="col-sm-12 py-3 py-md-3 px-3">
         <h2 class="d-inline p-2 bg-primary text-white text-center">there is nothing more</h2>
-
     </div>
-    
 }
-<a class="btn btn-primary" href="javascript:void(0);" onclick="showMore(@Model.CurrentPage, @Model.AmountOfPage)" role="button">
-    Show more
-  </a>
-
-
-
-
+else
+{
+    <a class="btn btn-primary" href="~/Clock/Index?isAjax=true&currentPage=@Model.PageCount" onclick="" role="button">
+        Show more
+    </a>
+}
 

@@ -12,5 +12,6 @@
         public int CurrentPage { get; set; }
         public int AmountOfPage { get; set; }
         public bool allPagesViews = false;
+        public int PageCount { get; set; }
     }
 }
