@@ -4,12 +4,12 @@ namespace ClockShop.Services
 {
     public class ShowMoreOnPage
     {
-        public ClockIndexModel ShowMorePage(List<ClockItem> clocks, ClockIndexModel model, int countItemOnThePage, int img, int currentPage = 1)
+        public ClockIndexModel ShowMorePage(List<ClockItem> clocks, ClockIndexModel model, int countItemOnThePage, int img, int currentPage = 1, bool shoppingCart = false)
         {
             model.Clock = clocks;
             var filteredOrders = clocks;
 
-            if (model.PageCount <= model.AmountOfPage)
+            if (model.PageCount <= model.AmountOfPage && shoppingCart == false)
             {
                 model.PageCount++;
             }

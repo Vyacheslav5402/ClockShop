@@ -1,0 +1,47 @@
+﻿@model ClockIndexModel
+
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model.Clock)
+{
+    <div class="card">
+        <div class="row">
+            <div class="col-sm py-3 py-md-4 px-3">
+                <div class="thumbnail">
+                    <img src=@Html.DisplayFor(modelItem => item.Src) height="100" fill="white" alt="...">
+                </div>
+            </div>
+            <div class="col-sm py-3 py-md-4 px-3">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm py-3 py-md-4 px-3">
+                <p>@Html.DisplayFor(modelItem => item.Prise)$</p>
+            </div>
+            <div class="col-sm py-3 py-md-4 px-3">
+                <a class="btn btn-secondary" href="javascript:void(0);" onclick="shopingCart(@item.Id)">
+                    Remove
+                </a>
+            </div>
+        </div>
+    </div>
+    <br />
+
+}
+<div class="row">
+    <div class="col-sm py-3 py-md-4 px-3">
+        <h3>@Model.AllPrise $</h3>
+    </div>
+    <div class="col-sm py-3 py-md-4 px-3">
+        <button type="button" class="btn btn-success" href="#">Сheckout</button>
+    </div>
+</div>
+<div>
+    <br />
+</div>

@@ -1,5 +1,4 @@
 ﻿using ClockShop.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ClockShop.Services
 {
@@ -22,7 +21,7 @@ namespace ClockShop.Services
             model.Clock = filteredOrders.Skip(skipItems).Take(countItemOnThePage).ToList();
             model.AmountOfPage = amountOfPage;
 
-            return  model;
+            return model;
         }
     }
 }

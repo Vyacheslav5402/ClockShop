@@ -28,7 +28,7 @@ namespace ClockShop.Controllers
             }
         }
 
-        public ActionResult Index(bool isAjax = false, int currentPage = 1)
+        public ActionResult Index(bool isAjax = false, int currentPage = 1, bool shoppingCart = false, int id = 0)
         {
             ClockIndexModel model = new ClockIndexModel();
             model.Clock = clocks;
@@ -36,8 +36,16 @@ namespace ClockShop.Controllers
             model.AmountOfPage = amountOfPage;
 
             ShowMoreOnPage showMore = new ShowMoreOnPage();
-            model = showMore.ShowMorePage(clocks, model, countItemOnThePage, img, currentPage);
+            model = showMore.ShowMorePage(clocks, model, countItemOnThePage, img, currentPage, shoppingCart);
             startPageClock = model.PageCount;
+
+            if (shoppingCart)
+            {
+                AddToShoppingCart toShoppingCart = new AddToShoppingCart();
+                toShoppingCart.AddToShoppingCarts(clocks, id);
+
+                return View("~/Views/Partials/IndexTable.cshtml", model);
+            }
 
             if (isAjax)
             {
@@ -58,10 +66,37 @@ namespace ClockShop.Controllers
             return View(model);
         }
 
-        public ActionResult Buy(int id)
+        public ActionResult Buy(bool shoppingCart = false, int id = 0)
         {
-            var model = clocks.FirstOrDefault(x => x.Id == id);
-            return View(model);
+            ClockIndexModel model = new ClockIndexModel();
+            List<ClockItem> clock = new List<ClockItem>();
+            decimal sum = 0;
+            if (shoppingCart)
+            {
+                AddToShoppingCart toShoppingCart = new AddToShoppingCart();
+                toShoppingCart.AddToShoppingCarts(clocks, id);
+
+            }
+            foreach (var item in clocks)
+            {
+                if (item.AddToShoppingCart == true)
+                {
+                    clock.Add(item);
+                    sum = sum + item.Prise;
+                }
+
+            }
+            model.Clock = clock;
+            model.AllPrise = sum;
+
+            if (shoppingCart)
+            {
+                return View("~/Views/Partials/buyTable.cshtml", model);
+            }
+            else
+            {
+                return View(model);
+            }
         }
 
         public ActionResult PageNavigation(int currentPage)

@@ -21,6 +21,7 @@ namespace ClockShop.Services
             {
                 model = JsonSerializer.Deserialize<DateDescriptionModel[]>(descriptionClock)?.ToList();
             }
+
             if (model != null)
             {
                 for (int i = 0; i < model.Count; i++)
@@ -37,7 +38,6 @@ namespace ClockShop.Services
                     };
                     dateDescriptions.Add(modelItem);
                 }
-
             }
         }
     }

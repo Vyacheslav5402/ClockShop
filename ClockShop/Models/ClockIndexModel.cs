@@ -13,5 +13,6 @@
         public int AmountOfPage { get; set; }
         public bool allPagesViews = false;
         public int PageCount { get; set; }
+        public decimal AllPrise { get; set; }
     }
 }

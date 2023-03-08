@@ -42,6 +42,7 @@ namespace ClockShop.Services
                         Id = id,
                         Description = dateDescriptions[i]
                     };
+
                     clocks.Add(modelItem);
 
                     id++;

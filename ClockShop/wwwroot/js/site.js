@@ -1,40 +1,37 @@
-﻿//function showMore(currentPage, totalPages) {
-//    if (totalPages == 0) {
-//        totalPages = 2
-//    }
+﻿function sortIsShopingCart(id, currentPage) {
+    var actionUrl = '/clock/index?shoppingCart=true&id=' + id + '&currentPage=' + currentPage;
+    console.log(actionUrl);
 
-//    if (currentPage > 0) {
-//        var asd = totalPages - currentPage + 1;
-//    }
+    $.ajax({
+        url: actionUrl,
+        success: function (result) {
+            console.log(result);
+            $('#indexTable').html(result);
+        },
+        beforeSend: function () {
+            $('.lds-roller').show();
+        },
+        complete: function () {
+            $('.lds-roller').hide();
+        }
+    });
+}
 
-//    $.ajax({
-        
-//        url: '/clock/index?isAjax=true&skipItems=0&currentPage='+asd,
-//        success: function (result) {
-//            $('#indexTable').html(result);
-//        },
-//        beforeSend: function () {
-//            $('.lds-roller').show();
-//        },
-//        complete: function () {
-//            $('.lds-roller').hide();
-//        }
-      
-//    });
-//}
-//function pageNavigation(idPage) {
-//    debugger;
-//    $.ajax({
+function shopingCart(id) {
+    var actionUrl = '/clock/buy?shoppingCart=true&id=' + id;
+    console.log(actionUrl);
 
-//        url: '/clock/pageNavigation?currentPage=' + idPage,
-//        success: function (result) {
-//            $('#indexTable').html(result);
-//        },
-//        beforeSend: function () {
-//            $('.lds-roller').show();
-//        },
-//        complete: function () {
-//            $('.lds-roller').hide();
-//        }
-//    });
-//}
+    $.ajax({
+        url: actionUrl,
+        success: function (result) {
+            console.log(result);
+            $('#buyTable').html(result);
+        },
+        beforeSend: function () {
+            $('.lds-roller').show();
+        },
+        complete: function () {
+            $('.lds-roller').hide();
+        }
+    });
+}

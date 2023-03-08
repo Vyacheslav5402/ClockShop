@@ -1,0 +1,13 @@
+﻿@model ClockIndexModel
+
+@{
+    ViewData["Title"] = "Buy";
+}
+
+<div id="buyTable">
+    @if (Model != null)
+    {
+        @Html.Partial("~/Views/Partials/BuyTable.cshtml", Model)
+    }
+</div>
+
