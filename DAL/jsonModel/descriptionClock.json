@@ -1,0 +1,84 @@
+[
+  {
+    "Id": 1,
+    "Country": "Japan",
+    "Guarantee": true,
+    "Gender": "Mens",
+    "Mechanism": "Quartz",
+    "Material": "Leather",
+    "Brand": "Casio"
+  },
+  {
+    "Id": 2,
+    "Country": "Japan",
+    "Guarantee": false,
+    "Gender": "Mens",
+    "Mechanism": "Quartz",
+    "Material": "Metal",
+    "Brand": "Casio"
+  },
+  {
+    "Id": 3,
+    "Country": "Japan",
+    "Guarantee": true,
+    "Gender": "Mens",
+    "Mechanism": "Quartz",
+    "Material": "Metal",
+    "Brand": "Casio"
+  },
+  {
+    "Id": 4,
+    "Country": "Korea",
+    "Guarantee": false,
+    "Gender": "Mens",
+    "Mechanism": "Smart-Watch",
+    "Material": "Silicone",
+    "Brand": "Samsung"
+  },
+  {
+    "Id": 5,
+    "Country": "Korea",
+    "Guarantee": true,
+    "Gender": "Mens",
+    "Mechanism": "Smart-Watch",
+    "Material": "Silicone",
+    "Brand": "Samsung"
+  },
+  {
+    "Id": 6,
+    "Country": "Korea",
+    "Guarantee": false,
+    "Gender": "Mens",
+    "Mechanism": "Smart-Watch",
+    "Material": "Silicone",
+    "Brand": "Samsung"
+  },
+  {
+    "Id": 7,
+    "Country": "Switzerland",
+    "Guarantee": true,
+    "Gender": "Mens",
+    "Mechanism": "Mechanical",
+    "Material": "Leather",
+    "Brand": "Epos"
+  },
+  {
+    "Id": 8,
+    "Country": "Switzerland",
+    "Guarantee": false,
+    "Gender": "Mens",
+    "Mechanism": "Mechanical",
+    "Material": "Leather",
+    "Brand": "Epos"
+  },
+  {
+    "Id": 9,
+    "Country": "Switzerland",
+    "Guarantee": true,
+    "Gender": "Mens",
+    "Mechanism": "Mechanical",
+    "Material": "Leather",
+    "Brand": "Epos"
+  }
+
+]

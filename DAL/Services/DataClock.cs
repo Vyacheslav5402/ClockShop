@@ -1,15 +1,15 @@
-﻿using ClockShop.Models;
+﻿using DAL.Models;
 using System.Text.Json;
 
-namespace ClockShop.Services
+namespace DAL.Services
 {
     public interface IAddDataClockList
     {
-        void AddDataClock(List<ClockItem> clocks, List<DateDescriptionModel> dateDescriptions, int countItemOnThePage, int maxClockAmount, int jsonSizeIndex);
+        void AddDataClock(List<ClockItemDALModel> clocks, List<DateDescriptionDALModel> dateDescriptions, int countItemOnThePage, int maxClockAmount, int jsonSizeIndex);
     }
     public class DataClock : IAddDataClockList
     {
-        public void AddDataClock(List<ClockItem> clocks, List<DateDescriptionModel> dateDescriptions, int countItemOnThePage, int maxClockAmount, int jsonSizeIndex)
+        public void AddDataClock(List<ClockItemDALModel> clocks, List<DateDescriptionDALModel> dateDescriptions, int countItemOnThePage, int maxClockAmount, int jsonSizeIndex)
         {
 
             var model = clocks;
@@ -18,7 +18,7 @@ namespace ClockShop.Services
 
             if (!string.IsNullOrEmpty(jsonClockList))
             {
-                model = JsonSerializer.Deserialize<ClockItem[]>(jsonClockList)?.ToList();
+                model = JsonSerializer.Deserialize<ClockItemDALModel[]>(jsonClockList)?.ToList();
             }
 
             int id = 1;
@@ -34,7 +34,7 @@ namespace ClockShop.Services
                         i = 0;
                     }
 
-                    var modelItem = new ClockItem
+                    var modelItem = new ClockItemDALModel
                     {
                         Name = model[i].Name,
                         Prise = model[i].Prise,

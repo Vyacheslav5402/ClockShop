@@ -1,4 +1,7 @@
-﻿using ClockShop.Models;
+﻿using AutoMapper;
+using ClockBL.ModelBL;
+using ClockBL.Services;
+using ClockShop.Models;
 using ClockShop.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +9,7 @@ namespace ClockShop.Controllers
 {
     public class ClockController : Controller
     {
+        //private readonly List<ClockItem> clocks;
         public static List<ClockItem> clocks = new List<ClockItem>();
         public static List<DateDescriptionModel> dateDescriptions = new List<DateDescriptionModel>();
         public int countItemOnThePage = 12;
@@ -15,15 +19,33 @@ namespace ClockShop.Controllers
         public static int amountOfPage;
         public static int startPageClock = 0;
 
+        private readonly IMapper _mapper;
+
         public ClockController()
         {
-            if (!clocks.Any())
-            {
-                AddDateDescriptionClocks dateDescriptionClocks = new AddDateDescriptionClocks();
-                dateDescriptionClocks.AddDataClock(clocks, dateDescriptions, countItemOnThePage, maxClockAmount, jsonSizeIndex);
+            ClockService orderService = new ClockService();
 
-                DataClock dataClock = new DataClock();
-                dataClock.AddDataClock(clocks, dateDescriptions, countItemOnThePage, maxClockAmount, jsonSizeIndex);
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MapperProfile());
+
+            });
+            _mapper = mapperConfig.CreateMapper();
+
+            List<ClockItemBLModel> clockBL = orderService.GetAllClocks();
+
+            if (clocks.Count == 0)
+            {
+                clocks = new List<ClockItem>();
+
+                foreach (var or in clockBL)
+                {
+                    var clock = _mapper.Map<ClockItem>(or);
+                    var clockDes = _mapper.Map<DateDescriptionModel>(or.Description);
+                    clock.Description = clockDes;
+
+                    clocks.Add(clock);
+                }
                 amountOfPage = clocks.Count / countItemOnThePage;
             }
         }
