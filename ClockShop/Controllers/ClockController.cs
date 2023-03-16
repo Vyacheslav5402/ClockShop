@@ -30,6 +30,7 @@ namespace ClockShop.Controllers
                 mc.AddProfile(new MapperProfile());
 
             });
+
             _mapper = mapperConfig.CreateMapper();
 
             List<ClockItemBLModel> clockBL = orderService.GetAllClocks();

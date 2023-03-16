@@ -1,0 +1,49 @@
+﻿@model ClockShop.Models.CustomClockModel
+
+@{
+    ViewData["Title"] = "Create";
+    
+}
+
+<h1 style="color: purple">Create New Clock</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="CustomClock" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Watchband" class="control-label"></label>
+                <input asp-for="Watchband" class="form-control" />
+                <span asp-validation-for="Watchband" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClockFase" class="control-label"></label>
+                <input asp-for="ClockFase" class="form-control" />
+                <span asp-validation-for="ClockFase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClockHands" class="control-label"></label>
+                <input asp-for="ClockHands" class="form-control" />
+                <span asp-validation-for="ClockHands" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClockCase" class="control-label"></label>
+                <input asp-for="ClockCase" class="form-control" />
+                <span asp-validation-for="ClockCase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

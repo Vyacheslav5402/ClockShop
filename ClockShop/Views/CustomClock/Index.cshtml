@@ -1,0 +1,33 @@
+﻿@model CustomIndexModel
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@if (Model != null)
+{
+    @foreach (var item in Model.ClockModels)
+    {
+        <div class="card">
+            <div class="row">
+                <div class="col-sm py-3 py-md-4 px-3">
+                    <div class="thumbnail">
+                        <img src=@Model.Src height="100" fill="white" alt="...">
+                    </div>
+                </div>
+                <div class="col-sm py-3 py-md-4 px-3">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h4>Custom Clock @Html.DisplayFor(modelItem => item.Id)</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm py-3 py-md-4 px-3">
+                    @Html.ActionLink("Edit Clock", "Edit", new { id = item.Id},  new {@class = "btn btn-info"})
+                    @Html.ActionLink("Details Clock", "Details", new { id = item.Id }, new {@class = "btn btn-danger"}) |
+                    @Html.ActionLink("Delete Clock", "Delete", new {id = item.Id }, new {@class = "btn btn-success"})
+                </div>
+            </div>
+        </div>
+    }
+}
